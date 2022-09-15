@@ -1,0 +1,2 @@
+def vida():
+    pass
