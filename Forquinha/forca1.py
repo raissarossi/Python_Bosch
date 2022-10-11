@@ -2,7 +2,6 @@
 import random
 import os
 
-
 def principal1():
     pasta = './'
     temas = []
@@ -154,16 +153,7 @@ def verificarLetra(forcaIMG, palavraSorteada):
 
         print("\nLETRAS DIGITADAS: ", letras)
         print(f'\033[1;35m-_' * 20, '\n\033[0;0m')
-    jogarNovamente()
 
 
-def jogarNovamente():
-    novoJogo = input("CASO QUEIRA JOGAR NOVAMENTE INSIRA [S]").lower()
-    if novoJogo == 's':
-        print('\n')
-        return principal()
-    else:
-        print('até mais')
-
-
-
+if __name__ == '__main__':
+    principal1()
