@@ -1,0 +1,3 @@
+pyuic5 -x ARQUIVO_DE_INPUT -o ARQUIVO_DE_OUTPUT
+
+C:\Users\CT67CA\AppData\Local\Programs\Python\Python39\Scripts\pyuic5 -x ARQUIVO_DE_INPUT -o ARQUIVO_DE_OUTPUT
