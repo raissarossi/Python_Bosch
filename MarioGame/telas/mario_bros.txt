@@ -1,0 +1,1 @@
+mario,luigi,yoshi,toad,browser,peach,waluigi,wario,paragoomba,toadette,daisy,mushroom,koopa
