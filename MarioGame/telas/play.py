@@ -1,3 +1,5 @@
+import winsound
+from memory import Memory
 from forca import Forca
 from jokenpo import Jokenpo
 from ticTacToe import TicTacToe
@@ -7,10 +9,18 @@ from PyQt5.QtGui import QMovie
 
 class Ui_playWindow(object):
     def setupUi(self, playWindow):
+
+        winsound.PlaySound("../songs/marioTrailer_Menu.wav", winsound.SND_ASYNC + winsound.SND_LOOP)
+
+
         playWindow.setObjectName("playWindow")
         playWindow.resize(1280, 720)
         self.centralwidget = QtWidgets.QWidget(playWindow)
         self.centralwidget.setObjectName("centralwidget")
+
+        self.teste = QtWidgets.QLabel(self.centralwidget)
+        self.teste.setGeometry(QtCore.QRect(0, 0, 100, 100))
+        self.teste.setPixmap(QtGui.QPixmap("../backgrounds/capaInicial.png"))
 
         self.backgroundPlay = QtWidgets.QLabel(self.centralwidget)
         self.backgroundPlay.setGeometry(QtCore.QRect(0, 0, 1280, 720))
@@ -83,6 +93,11 @@ class Ui_playWindow(object):
 
     def openMemory(self):
         print("Memory")
+        # self.window  = QtWidgets.QWidget()
+        self.ui = Memory()
+        # self.ui.setupUi(self.window)
+        self.ui.show()
+
 
     def openForca(self):
         print("Forca")
@@ -91,12 +106,16 @@ class Ui_playWindow(object):
         self.ui.setupUi(self.window)
         self.window.show()
 
+
     def openTicTacToe(self):
         print("TicTacToe")
+        winsound.PlaySound("../songs/mario3Dland_TicTacToe.wav", winsound.SND_ASYNC + winsound.SND_LOOP)
         self.window  = QtWidgets.QWidget()
         self.ui = TicTacToe()
         self.ui.setupUi(self.window)
         self.window.show()
+        if self.window != self.window.show():
+            winsound.PlaySound("../songs/marioTrailer_Menu.wav", winsound.SND_ASYNC + winsound.SND_LOOP)
 
     def openJokenpo(self):
         print("Jokenpo")
@@ -106,7 +125,6 @@ class Ui_playWindow(object):
         self.window.show()
 
 
-        
 
 if __name__ == "__main__":
     import sys

@@ -1,4 +1,6 @@
 import sys
+
+import winsound
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QPixmap
@@ -7,6 +9,9 @@ from PyQt5 import uic, QtGui
 
 class TicTacToe(object):
     def setupUi(self, Form):
+
+        # winsound.PlaySound("../songs/mario3Dland_TicTacToe.wav", winsound.SND_ASYNC + winsound.SND_LOOP)
+
         Form.setObjectName("Form")
         Form.resize(1280, 720)
         self.scoreMario = 0
@@ -43,12 +48,6 @@ class TicTacToe(object):
         self.bgResult.setGeometry(QtCore.QRect(0, 0, 1280, 720))
         self.bgResult.setStyleSheet("background-color: rgb(0,0,0,50%)")
         self.bgResult.hide()
-
-        self.btnQuit = QtWidgets.QPushButton(Form)
-        self.btnQuit.setGeometry(QtCore.QRect(1160, 30, 85, 30))
-        self.btnQuit.setStyleSheet("background-color: rgb(0,0,0,0%)")
-        self.btnQuit.setStyleSheet("border-image: url(../elements/quit.png);")
-        self.btnQuit.clicked.connect(self.quit)
 
         self.btnDoor = QtWidgets.QPushButton(Form)
         self.btnDoor.setGeometry(QtCore.QRect(580, 230, 121, 101))
@@ -203,7 +202,7 @@ class TicTacToe(object):
                 self.lblMario.setText(str(self.scoreMario))
                 self.stop(True)
                 self.btnReset.setDisabled(False)
-                if self.scoreMario >= 5:
+                if self.scoreMario >= 3:
                     self.reset()
                     self.bgResult.show()
                     self.bgResult.setPixmap(QtGui.QPixmap("../backgrounds/congratulationsW.png"))
@@ -215,7 +214,7 @@ class TicTacToe(object):
                 self.lblToad.setText(str(self.scoreToad))
                 self.stop(True)
                 self.btnReset.setDisabled(False)
-                if self.scoreToad >= 5:
+                if self.scoreToad >= 3:
                     self.reset()
                     self.bgResult.show()
                     self.bgResult.setPixmap(QtGui.QPixmap("../backgrounds/gameOverW.png"))
@@ -239,8 +238,6 @@ class TicTacToe(object):
             i.setText("0")
             self.stop(False)
 
-    def quit(self):
-        self.close()
 
 
 if __name__ == "__main__":

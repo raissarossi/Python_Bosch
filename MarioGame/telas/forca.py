@@ -1,10 +1,16 @@
+import winsound
 from PyQt5 import QtCore, QtGui, QtWidgets
 import random
 import os
 
+from PyQt5.QtCore import QTimer
+
 
 class Forca(object):
     def setupUi(self, Form):
+
+        winsound.PlaySound("../songs/marioBros_Forca.wav", winsound.SND_ASYNC + winsound.SND_LOOP)
+
         Form.setObjectName("Forca")
         Form.resize(1280, 720)
 
@@ -32,12 +38,6 @@ class Forca(object):
         self.tema.setGeometry(QtCore.QRect(10, 528, 190, 30))
         self.tema.setStyleSheet("background-color: rgb(0,0,0,0%); color: #ff0000; font-size: 17px; font:bold;")
         self.tema.setText("")
-
-        self.btnQuit = QtWidgets.QPushButton(Form)
-        self.btnQuit.setGeometry(QtCore.QRect(1160, 30, 85, 30))
-        self.btnQuit.setStyleSheet("background-color: rgb(0,0,0,0%)")
-        self.btnQuit.setStyleSheet("border-image: url(../elements/quitt.png);")
-        self.btnQuit.clicked.connect(self.quit)
 
         self.btn_Q = QtWidgets.QPushButton(Form)
         self.btn_Q.setGeometry(QtCore.QRect(219, 570, 40, 40))
@@ -200,6 +200,9 @@ class Forca(object):
         self.btn_Enter.setStyleSheet("background-color: rgb(0,0,0,0%)")
         self.btn_Enter.setObjectName("btn_Enter")
 
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.abrirPerdedor)
+
         self.principal1()
 
         self.retranslateUi(Form)
@@ -241,15 +244,17 @@ class Forca(object):
             else:
                 lista.append(palavra)
                 palavra = ''
-        # self.palavraSorteada = random.choice(lista)
-        self.palavraSorteada = 'a'
+        self.palavraSorteada = random.choice(lista)
+        # self.palavraSorteada = 'a'
         print(self.palavraSorteada)
         arq.close()
         vazio = "_ " * len(self.palavraSorteada)
         self.word.setText(vazio)
         self.forcaIMG = ["../backgrounds/Forca0.png", "../backgrounds/Forca1.png", "../backgrounds/Forca2.png",
                          "../backgrounds/Forca3.png", "../backgrounds/Forca4.png", "../backgrounds/Forca5.png"]
-
+    def abrirPerdedor(self):
+        self.result.setPixmap(QtGui.QPixmap("../backgrounds/gameOverR.png"))
+        self.timer.stop()
     def verificarLetra(self, palpite, btn=""):
         if btn != "":
             btn.setEnabled(False)
@@ -278,7 +283,8 @@ class Forca(object):
             self.word.hide()
             self.result.show()
             self.tema.hide()
-            self.result.setPixmap(QtGui.QPixmap("../backgrounds/gameOverR.png"))
+
+            self.timer.start(2000)
             return
         palavra = ""
         for i in self.palavraSorteada:
@@ -312,8 +318,7 @@ class Forca(object):
         print("\nLETRAS DIGITADAS: ", letras)
         print(f'\033[1;35m-_' * 20, '\n\033[0;0m')
 
-    def quit(self):
-        self.close()
+
 
 
 if __name__ == "__main__":

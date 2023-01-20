@@ -1,10 +1,12 @@
 import random
 
+import winsound
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Jokenpo(object):
     def setupUi(self, Form):
+        winsound.PlaySound("../songs/marioBowserCastle_Jokenpo.wav", winsound.SND_ASYNC + winsound.SND_LOOP)
         Form.setObjectName("Form")
         Form.resize(1280, 720)
 
@@ -50,7 +52,6 @@ class Jokenpo(object):
         self.btnPeach.setText("")
         self.btnPeach.setObjectName("btnPeach")
         self.btnPeach.clicked.connect(lambda: self.comparacao(1))
-
 
         self.btnBowser = QtWidgets.QPushButton(Form)
         self.btnBowser.setGeometry(QtCore.QRect(400, 500, 91, 71))
@@ -118,14 +119,6 @@ class Jokenpo(object):
         self.sortear()
 
         print(self.ganhou)
-
-
-
-
-
-
-
-
 
 if __name__ == "__main__":
     import sys
